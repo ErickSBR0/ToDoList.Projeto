@@ -1,13 +1,28 @@
 import React from "react";
 
-const TodoForm = () => {
+const TodoForm = ({ addTodo }) => {
+  const [value, setValue] = React.useState("");
+  const [category, setCategory] = React.useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTodo(value, category);
+    setValue("");
+    setCategory("");
+  };
+
   return (
-    <div>
+    <div className="todo-form">
       <h2>Adicionar Nova Tarefa</h2>
-      <form action="">
-        <input type="text" placeholder="Digite o título" />
-        <select>
-          <option value="">Selecione um categoria</option>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Digite o título"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">Selecione uma categoria</option>
           <option value="Estudos">Estudos</option>
           <option value="Trabalho">Trabalho</option>
           <option value="Lazer">Lazer</option>

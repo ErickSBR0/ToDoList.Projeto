@@ -27,15 +27,49 @@ function App() {
     },
   ]);
 
+  const addTodo = (text, category) => {
+    const newTodo = [
+      ...todo,
+      {
+        id: Math.random(Math.random() * 1000),
+        text,
+        category,
+        isCompleted: false,
+      },
+    ];
+    setTodo(newTodo);
+  };
+
+  const removeTodo = (id) => {
+    const newTodos = [...todo];
+    const filteredTodos = newTodos.filter((todo) =>
+      todo.id !== id ? todo : null,
+    );
+    setTodo(filteredTodos);
+  };
+
+  const completeTodo = (id) => {
+    const newTodos = [...todo];
+    newTodos.map((todo) =>
+      todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo,
+    );
+    setTodo(newTodos);
+  };
+
   return (
     <div className="App">
       <h1>Lista de Tarefas</h1>
       <div className="todo-list">
         {todo.map((todo) => (
-          <Todo todo={todo} />
+          <Todo
+            key={todo.id}
+            todo={todo}
+            removeTodo={removeTodo}
+            completeTodo={completeTodo}
+          />
         ))}
       </div>
-      <TodoForm />
+      <TodoForm addTodo={addTodo} />
     </div>
   );
 }
