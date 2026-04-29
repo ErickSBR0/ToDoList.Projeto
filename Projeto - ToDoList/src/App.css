@@ -76,3 +76,20 @@ select {
   width: 100%;
   margin-bottom: 10px;
 }
+
+.Filter,
+.search {
+  border-bottom: 1px solid #d51919;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.Filter-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.Filter-options div {
+  flex: 1 1 0;
+}
